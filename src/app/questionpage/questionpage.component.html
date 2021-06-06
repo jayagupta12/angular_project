@@ -1,0 +1,18 @@
+<div>
+  <div class="center_x" *ngIf="question">
+    <br>
+    <br>
+    <label>{{question[current].ques}}</label>
+    <br>
+    <div align="center">
+      <mat-radio-group style="width: 60%;" (change)="radioChange($event)" aria-labelledby="example-radio-group-label"
+        class="example-radio-group" [(ngModel)]="selectedAnswer">
+        <mat-radio-button class="example-radio-button" *ngFor="let option of question[current].option" [value]="option">
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <br><br>
+    <button class="startbutton" (click)="increaseindex()">{{btnText}}</button>
+  </div>
+</div>

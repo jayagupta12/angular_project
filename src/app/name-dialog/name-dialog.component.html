@@ -1,0 +1,30 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()"> 
+
+<div>
+  <div class="center_x">
+    <br />
+    <img src="assets/balloon.svg">
+    <br />
+    <label> Super Dare of 2021</label><br>
+    <br>
+    <p>
+      <mat-form-field appearance="outline" style="display: block;">
+        <mat-label>Your Name</mat-label>
+        <input matInput placeholder="" formControlName="Name">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+      </mat-form-field>
+      
+    </p>
+    <div *ngIf=" f.Name.errors" class="invalid">
+      <div *ngIf="f.Name.errors.required">
+        please write your name
+      </div>
+      </div>
+<br>
+    <button class="startbutton" type="submit">Start</button>
+    <br>
+    <br>
+
+  </div>
+</div>

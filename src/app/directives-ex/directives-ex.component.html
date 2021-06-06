@@ -1,0 +1,31 @@
+<p *ngIf="show">directives-ex works!</p>
+<button (click)="showme()">{{show?'hide':'show'}}</button>
+
+<p *ngIf="show">show me</p>
+
+<p *ngFor="let x of ar">{{x}}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of ar; let i=index">
+        <td>{{i+1}}</td>
+        <td>
+            {{x}}
+        </td>
+      
+    </tr>
+</tbody>
+</table>
+
+
+<div [ngSwitch]="model">
+    <h1 *ngSwitchCase="'start'">{{model}}</h1>
+    <h2 *ngSwitchCase="'end'">{{model}}</h2>
+    <h3 *ngSwitchCase="'mid'">{{model}}</h3>
+</div>

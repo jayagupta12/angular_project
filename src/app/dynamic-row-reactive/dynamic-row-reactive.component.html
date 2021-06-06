@@ -1,0 +1,32 @@
+<div >
+  
+  
+    
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      
+      <table  formArrayName="quantities">
+        <tr>
+          <th width="150px"><button type="button" (click)="addQuantity()" >Add More</button></th>
+        </tr>
+        <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+          <td>
+              Quantity :
+              <input type="text" formControlName="qty" >
+          </td>
+          <td>
+              Price:
+              <input type="text" formControlName="price" >
+          </td>
+          <td>
+              <button (click)="removeQuantity(i)" >Remove</button>
+          </td>
+        </tr>
+      </table>
+     
+      <button type="submit" >Submit</button>
+      
+    </form>
+      
+    <br/>
+    {{this.productForm.value | json}}
+  </div>

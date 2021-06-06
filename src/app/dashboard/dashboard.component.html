@@ -1,0 +1,59 @@
+
+
+<div>
+    <div  class="center_x" >
+<br/>
+      <img src="assets/balloon.svg">
+      <br/>
+    <label> Super Dare of 2021</label><br>
+    <label> How well do you know your friend</label>
+    <br>
+    <br>
+    <form #userForm='ngForm' (ngSubmit)="onSubmit(userForm)">
+    <p>
+      <mat-form-field appearance="outline">
+          <mat-label>Your Name</mat-label>
+          <input matInput placeholder="" name="name" ngModel>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> 
+        
+        </mat-form-field>
+      </p>
+     
+      <button class="startbutton" type="submit">Start</button>
+    </form>
+<br>
+<br>
+      <label> Who Knows Best?</label>
+<br>
+<br>
+<div align="center">
+<table mat-table [dataSource]="score" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color:white;background-color: black;" > <b>Name</b></th>
+    <td mat-cell *matCellDef="let element" style="text-align: center; color:white;background-color: rgb(45, 58, 119);"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Score">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color:white;background-color: black;"><b>Score</b>  </th>
+    <td mat-cell *matCellDef="let element" style="text-align: center; color:white;background-color: rgb(45, 58, 119);"> {{element.score}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+
+ 
+<button class="startbutton" (click)="openDialog()">Create your quiz</button>
+<br>
+<br>
+</div>
+</div>
+
+    </div>

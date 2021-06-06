@@ -1,0 +1,42 @@
+
+<h3>Contact Form</h3>
+
+ <div class="container">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
+    <label for="fname" >First Name</label>
+    <input formControlName="firstName" type="text" id="fname" name="firstname" placeholder="Your name..">
+    <div *ngIf=" f.firstName.errors" class="invalid">
+      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+  </div>
+   
+    <label for="lname">Last Name</label>
+    <input formControlName="lastName" type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <label for="country">Country</label>
+    <select formControlName="country" id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+    <label for="subject">Subject</label>
+    <textarea formControlName="subject" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+   
+   <div formGroupName="address">
+
+    <label for="Address Line 1" >First Name</label>
+    <input formControlName="address1" type="text" id="fname" name="firstname" placeholder="Your name..">
+    <label for="Address Line 2">Last Name</label>
+    <input formControlName="address2" type="text" id="fname" name="firstname" placeholder="Your name..">
+    
+   </div>
+   
+    <button [disabled]="!profileForm.valid" type="submit">Save</button>
+  </form>
+</div> 
+
+
+
+
+
+
+
+
