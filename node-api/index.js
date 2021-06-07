@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const app = express();
 const uri = "mongodb+srv://jaya:jayagupta123@cluster0.eggmb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 var dbService = require('./database_service')
+const cors = require('cors');
+app.use(cors())
+app.use(express.json())
+
+
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -14,14 +19,13 @@ mongoose.connect(uri, {
 }).catch(err => console.error(err))
 
 
-const cors = require('cors');
-app.use(cors())
-app.use(express.json())
+
 
 app.post('/addQuestion', async (req, res) => {
 
     try {
-        let resp = await dbService.saveQuestion(req.body)
+        let ques=req.body
+        let resp = await dbService.saveQuestion(ques)
         res.send(resp);
 
     } catch (error) {
@@ -34,7 +38,7 @@ var nanoId = require('nanoid')
 app.get('/getquestion', async (req, res) => {
     try {
         let resp = await dbService.getQuestion();
-        res.send(resp)// url return krna hia yhan pr id krlo sirf
+        res.send(resp)
     } catch (error) {
         res.send(error)
     }
@@ -43,10 +47,9 @@ app.get('/getquestion', async (req, res) => {
 app.post('/saveUserQuestion', async (req, res) => {
 
     try {
-        //save to kro result to ruk jao kr rhi hu 
+  
 
         let uId = nanoId.nanoid(10);
-        //kro ab
         console.log(req.body)
         let payload = {
             name: req.body.name,
@@ -64,7 +67,8 @@ app.post('/saveUserQuestion', async (req, res) => {
 app.post('/getUserQuestion', async (req, res) => {
     try {
         console.log(req.body)
-        let resp = await dbService.getUserQuestion(req.body.friendId)
+        let friendId=req.body.friendId
+        let resp = await dbService.getUserQuestion(friendId)
         res.send(resp)
     } catch (error) {
         res.send(error)
@@ -85,7 +89,10 @@ app.post('/getFriendScore', async (req, res) => {
 })
 app.post('/save', async (req, res) => {
     try {
-        let resp = await dbService.saveFriendScore(req.body)
+
+
+        let friendResp=req.body
+        let resp = await dbService.saveFriendScore(friendResp)
         console.log(resp)
         res.json(resp.toObject())
     } catch (error) {
